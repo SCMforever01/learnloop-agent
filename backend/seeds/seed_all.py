@@ -176,9 +176,10 @@ async def seed_database():
             domain = Domain(**domain_data)
             session.add(domain)
 
-            # 创建概念
+            # 创建概念（去掉 prerequisites 字段，避免和 ORM relationship 冲突）
             for i, concept_data in enumerate(concepts_data):
-                concept = Concept(**concept_data, sort_order=i)
+                clean_data = {k: v for k, v in concept_data.items() if k != "prerequisites"}
+                concept = Concept(**clean_data, domain_id=domain_data["id"], sort_order=i)
                 session.add(concept)
 
             # 创建前置关系
