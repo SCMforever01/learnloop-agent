@@ -29,6 +29,8 @@ export interface LearningSession {
   session_id: string;
   domain_id: string;
   phase: string;
+  current_concept_id?: string | null;
+  session_data?: Record<string, unknown> | null;
 }
 
 export interface DiagnosisResult {
@@ -45,8 +47,6 @@ export interface PracticeQuestion {
   type: string;
   content: string;
   options: string[];
-  answer: string;
-  explanation: string;
   difficulty: number;
 }
 

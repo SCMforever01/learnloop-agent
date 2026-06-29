@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import {
   getSession,
@@ -11,7 +11,6 @@ import {
   generatePractice,
   submitPractice,
   startVerification,
-  submitVerification,
   planPath,
   fetchConcepts,
 } from "@/lib/api";
@@ -30,7 +29,6 @@ export default function LearnPage() {
   const sessionId = params.sessionId as string;
 
   const [phase, setPhase] = useState("loading");
-  const [domainId, setDomainId] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -48,25 +46,12 @@ export default function LearnPage() {
 
   useEffect(() => { scrollToBottom(); }, [messages]);
 
-  // 初始化会话
-  useEffect(() => {
-    getSession(sessionId).then((data: Record<string, unknown>) => {
-      setDomainId(data.domain_id as string);
-      setPhase((data.phase as string) || "diagnose");
-      setCurrentConceptId((data.current_concept_id as string) || "");
-      fetchConcepts(data.domain_id as string).then(setConcepts).catch(() => {});
-      if ((data.phase as string) === "diagnose") {
-        handleStartDiagnosis();
-      }
-    }).catch(console.error);
-  }, [sessionId]);
-
-  const addMessage = (role: "user" | "assistant", agentType: string, content: string) => {
+  const addMessage = useCallback((role: "user" | "assistant", agentType: string, content: string) => {
     setMessages((prev) => [...prev, { role, agent_type: agentType, content }]);
-  };
+  }, []);
 
   // ===== 诊断 =====
-  const handleStartDiagnosis = async () => {
+  const handleStartDiagnosis = useCallback(async () => {
     setLoading(true);
     try {
       const { reply } = await startDiagnosis(sessionId);
@@ -77,7 +62,19 @@ export default function LearnPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [addMessage, sessionId]);
+
+  // 初始化会话
+  useEffect(() => {
+    getSession(sessionId).then((data) => {
+      setPhase(data.phase || "diagnose");
+      setCurrentConceptId(data.current_concept_id || "");
+      fetchConcepts(data.domain_id).then(setConcepts).catch(() => {});
+      if (data.phase === "diagnose") {
+        handleStartDiagnosis();
+      }
+    }).catch(console.error);
+  }, [handleStartDiagnosis, sessionId]);
 
   const handleSend = async () => {
     if (!input.trim() || loading) return;

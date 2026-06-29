@@ -34,8 +34,8 @@ export async function createSession(domainId: string): Promise<LearningSession> 
   });
 }
 
-export async function getSession(sessionId: string) {
-  return apiFetch(`/api/v1/learn/sessions/${sessionId}`);
+export async function getSession(sessionId: string): Promise<LearningSession> {
+  return apiFetch<LearningSession>(`/api/v1/learn/sessions/${sessionId}`);
 }
 
 // ===== 诊断 =====
