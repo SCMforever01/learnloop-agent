@@ -148,6 +148,97 @@ MATH_QUESTIONS = [
 ]
 
 
+# ========== 英语学习 ==========
+
+ENGLISH_DOMAIN = {
+    "id": "english",
+    "name": "英语学习",
+    "category": "语言",
+    "description": "英语核心语法与词汇学习，涵盖音标、时态、从句、写作等。",
+    "icon": "🇬🇧",
+}
+
+ENGLISH_CONCEPTS = [
+    {"id": "english/phonetics", "name": "音标基础", "description": "48个国际音标、元音与辅音、拼读规则", "level": 1, "tags": ["基础"], "prerequisites": []},
+    {"id": "english/nouns", "name": "名词与代词", "description": "可数/不可数名词、人称代词、物主代词", "level": 1, "tags": ["基础"], "prerequisites": ["english/phonetics"]},
+    {"id": "english/tenses", "name": "动词时态", "description": "一般现在/过去/将来、现在进行、现在完成等8种时态", "level": 2, "tags": ["核心"], "prerequisites": ["english/nouns"]},
+    {"id": "english/passive", "name": "被动语态", "description": "被动语态的构成与用法、各时态的被动形式", "level": 3, "tags": ["核心"], "prerequisites": ["english/tenses"]},
+    {"id": "english/clauses", "name": "定语从句", "description": "关系代词 who/which/that、关系副词 when/where/why", "level": 3, "tags": ["核心"], "prerequisites": ["english/tenses"]},
+    {"id": "english/subjunctive", "name": "虚拟语气", "description": "if条件句的虚拟、wish/suggest等词的虚拟用法", "level": 4, "tags": ["进阶"], "prerequisites": ["english/tenses"]},
+    {"id": "english/writing", "name": "写作基础", "description": "段落结构、主题句、连接词、常见文体", "level": 4, "tags": ["应用"], "prerequisites": ["english/clauses"]},
+]
+
+ENGLISH_QUESTIONS = [
+    {"concept_id": "english/phonetics", "question_type": "choice", "content": "以下哪个是双元音？", "options": ["A. /i:/", "B. /aɪ/", "C. /p/", "D. /m/"], "answer": "B", "explanation": "/aɪ/ 是双元音，由 /a/ 滑向 /ɪ/。/i:/ 是长元音，/p/ /m/ 是辅音。", "difficulty": 1},
+    {"concept_id": "english/nouns", "question_type": "choice", "content": "以下哪个是不可数名词？", "options": ["A. apple", "B. water", "C. book", "D. cat"], "answer": "B", "explanation": "water（水）是不可数名词，不能直接加 s。apple/book/cat 都是可数名词。", "difficulty": 1},
+    {"concept_id": "english/tenses", "question_type": "choice", "content": "She ___ to school every day. 填什么？", "options": ["A. go", "B. goes", "C. going", "D. went"], "answer": "B", "explanation": "主语 She 是第三人称单数，一般现在时动词加 s/es。", "difficulty": 2},
+    {"concept_id": "english/tenses", "question_type": "choice", "content": "I ___ this book since last week. 填什么？", "options": ["A. read", "B. am reading", "C. have read", "D. will read"], "answer": "C", "explanation": "since last week 表示从过去持续到现在，用现在完成时 have read。", "difficulty": 3},
+    {"concept_id": "english/passive", "question_type": "choice", "content": "The cake ___ by my mom yesterday. 填什么？", "options": ["A. made", "B. was made", "C. is made", "D. has made"], "answer": "B", "explanation": "yesterday 表过去，蛋糕是被做的，用过去时被动 was made。", "difficulty": 3},
+    {"concept_id": "english/clauses", "question_type": "choice", "content": "The boy ___ is standing there is my brother. 填什么？", "options": ["A. who", "B. which", "C. where", "D. what"], "answer": "A", "explanation": "先行词 boy 是人，用 who 引导定语从句。", "difficulty": 3},
+    {"concept_id": "english/subjunctive", "question_type": "choice", "content": "If I ___ you, I would study harder. 填什么？", "options": ["A. am", "B. was", "C. were", "D. be"], "answer": "C", "explanation": "虚拟语气中，if 从句用 were（不论人称），表示与现在事实相反。", "difficulty": 4},
+    {"concept_id": "english/writing", "question_type": "choice", "content": "以下哪个是最好的主题句？", "options": ["A. I like dogs.", "B. Dogs are popular pets for three reasons.", "C. Dogs bark.", "D. My dog is brown."], "answer": "B", "explanation": "B 明确表达了段落主题和方向（三个原因），是最好的主题句。", "difficulty": 3},
+]
+
+
+# ========== JavaScript 编程 ==========
+
+JAVASCRIPT_DOMAIN = {
+    "id": "javascript",
+    "name": "JavaScript 编程",
+    "category": "编程",
+    "description": "JavaScript 核心概念，从变量到异步编程，适合前端和全栈开发者。",
+    "icon": "⚡",
+}
+
+JAVASCRIPT_CONCEPTS = [
+    {"id": "js/variables", "name": "变量与类型", "description": "var/let/const、基本类型、类型转换", "level": 1, "tags": ["基础"], "prerequisites": []},
+    {"id": "js/functions", "name": "函数", "description": "函数声明、箭头函数、参数、闭包", "level": 2, "tags": ["核心"], "prerequisites": ["js/variables"]},
+    {"id": "js/arrays", "name": "数组与对象", "description": "数组方法、对象操作、解构赋值", "level": 2, "tags": ["核心"], "prerequisites": ["js/variables"]},
+    {"id": "js/async", "name": "异步编程", "description": "Promise、async/await、回调、事件循环", "level": 3, "tags": ["核心"], "prerequisites": ["js/functions"]},
+    {"id": "js/dom", "name": "DOM 操作", "description": "选择元素、事件处理、DOM 修改", "level": 3, "tags": ["前端"], "prerequisites": ["js/functions"]},
+    {"id": "js/es6", "name": "ES6+ 特性", "description": "模板字符串、展开运算符、模块、Symbol、Map/Set", "level": 3, "tags": ["进阶"], "prerequisites": ["js/arrays"]},
+]
+
+JAVASCRIPT_QUESTIONS = [
+    {"concept_id": "js/variables", "question_type": "choice", "content": "以下哪个声明的变量不能被重新赋值？", "options": ["A. var", "B. let", "C. const", "D. 都可以"], "answer": "C", "explanation": "const 声明的变量不能重新赋值（但对象/数组的属性可以修改）。", "difficulty": 1},
+    {"concept_id": "js/variables", "question_type": "choice", "content": "typeof null 的结果是？", "options": ["A. 'null'", "B. 'undefined'", "C. 'object'", "D. 'boolean'"], "answer": "C", "explanation": "这是 JavaScript 的历史 bug，typeof null 返回 'object'。", "difficulty": 2},
+    {"concept_id": "js/functions", "question_type": "choice", "content": "箭头函数和普通函数的主要区别是？", "options": ["A. 语法更短", "B. 没有自己的 this", "C. 不能有参数", "D. 不能返回值"], "answer": "B", "explanation": "箭头函数没有自己的 this，它继承外层作用域的 this。", "difficulty": 2},
+    {"concept_id": "js/arrays", "question_type": "choice", "content": "[1,2,3].map(x => x * 2) 的结果是？", "options": ["A. [1,2,3]", "B. [2,4,6]", "C. 6", "D. [1,4,9]"], "answer": "B", "explanation": "map 方法对每个元素执行回调，x*2 后返回新数组 [2,4,6]。", "difficulty": 2},
+    {"concept_id": "js/async", "question_type": "choice", "content": "Promise.all 的行为是？", "options": ["A. 任一完成即返回", "B. 全部完成才返回", "C. 按顺序执行", "D. 忽略错误"], "answer": "B", "explanation": "Promise.all 等待所有 Promise 完成，任一 reject 则立即 reject。", "difficulty": 3},
+    {"concept_id": "js/dom", "question_type": "choice", "content": "document.querySelector('.box') 返回什么？", "options": ["A. 所有匹配元素的数组", "B. 第一个匹配的元素", "C. 元素的数量", "D. 元素的 innerHTML"], "answer": "B", "explanation": "querySelector 返回第一个匹配的元素。querySelectorAll 才返回所有匹配。", "difficulty": 2},
+    {"concept_id": "js/es6", "question_type": "choice", "content": "const {name, age} = obj 这行代码叫什么？", "options": ["A. 模板字符串", "B. 展开运算符", "C. 解构赋值", "D. 箭头函数"], "answer": "C", "explanation": "这是对象解构赋值，从 obj 中提取 name 和 age 属性。", "difficulty": 2},
+]
+
+
+# ========== 法律基础 ==========
+
+LAW_DOMAIN = {
+    "id": "law-basics",
+    "name": "法律基础",
+    "category": "考证",
+    "description": "法律入门知识，涵盖民法、刑法、合同法、劳动法、知识产权等核心概念。",
+    "icon": "⚖️",
+}
+
+LAW_CONCEPTS = [
+    {"id": "law/basics", "name": "法律基本概念", "description": "法律的定义、分类、法律关系、法律渊源", "level": 1, "tags": ["基础"], "prerequisites": []},
+    {"id": "law/civil", "name": "民法基础", "description": "民事主体、民事权利、民事行为能力", "level": 2, "tags": ["核心"], "prerequisites": ["law/basics"]},
+    {"id": "law/criminal", "name": "刑法基础", "description": "犯罪构成、刑罚种类、正当防卫、紧急避险", "level": 2, "tags": ["核心"], "prerequisites": ["law/basics"]},
+    {"id": "law/contract", "name": "合同法", "description": "合同的成立、生效、履行、违约责任", "level": 3, "tags": ["核心"], "prerequisites": ["law/civil"]},
+    {"id": "law/labor", "name": "劳动法", "description": "劳动合同、工资、工时、劳动争议", "level": 3, "tags": ["实用"], "prerequisites": ["law/civil"]},
+    {"id": "law/ip", "name": "知识产权", "description": "著作权、专利权、商标权的基本概念", "level": 3, "tags": ["实用"], "prerequisites": ["law/civil"]},
+]
+
+LAW_QUESTIONS = [
+    {"concept_id": "law/basics", "question_type": "choice", "content": "以下哪个不是法律的渊源？", "options": ["A. 宪法", "B. 行政法规", "C. 学术论文", "D. 司法解释"], "answer": "C", "explanation": "学术论文不是法律渊源。法律渊源包括宪法、法律、行政法规、地方性法规、司法解释等。", "difficulty": 1},
+    {"concept_id": "law/civil", "question_type": "choice", "content": "16周岁以上不满18周岁的公民，以自己的劳动收入为主要生活来源的，视为？", "options": ["A. 无民事行为能力人", "B. 限制民事行为能力人", "C. 完全民事行为能力人", "D. 以上都不是"], "answer": "C", "explanation": "民法典规定，16-18周岁以劳动收入为主要生活来源的，视为完全民事行为能力人。", "difficulty": 2},
+    {"concept_id": "law/criminal", "question_type": "choice", "content": "正当防卫超过必要限度造成重大损害的，应当？", "options": ["A. 不负刑事责任", "B. 负刑事责任，但应减轻或免除处罚", "C. 负完全刑事责任", "D. 由法院决定"], "answer": "B", "explanation": "防卫过当应当负刑事责任，但应当减轻或者免除处罚。", "difficulty": 3},
+    {"concept_id": "law/contract", "question_type": "choice", "content": "以下哪种合同是无效的？", "options": ["A. 书面合同", "B. 口头合同", "C. 违反法律强制性规定的合同", "D. 电子邮件合同"], "answer": "C", "explanation": "违反法律、行政法规的强制性规定的合同无效。口头合同和电子邮件合同都是有效的。", "difficulty": 2},
+    {"concept_id": "law/labor", "question_type": "choice", "content": "劳动法规定，试用期最长不得超过？", "options": ["A. 1个月", "B. 3个月", "C. 6个月", "D. 12个月"], "answer": "C", "explanation": "劳动合同期限三年以上的，试用期不得超过六个月。", "difficulty": 2},
+    {"concept_id": "law/ip", "question_type": "choice", "content": "著作权的保护期限一般是？", "options": ["A. 作者终身", "B. 作者终身及死后50年", "C. 发表后50年", "D. 永久保护"], "answer": "B", "explanation": "公民作品的著作权保护期为作者终身及其死亡后50年。", "difficulty": 2},
+]
+
+
 # ========== 注册种子数据 ==========
 
 ALL_SEEDS = [
@@ -155,6 +246,9 @@ ALL_SEEDS = [
     (FINANCE_DOMAIN, FINANCE_CONCEPTS, FINANCE_QUESTIONS),
     (CPA_DOMAIN, CPA_CONCEPTS, CPA_QUESTIONS),
     (MATH_DOMAIN, MATH_CONCEPTS, MATH_QUESTIONS),
+    (ENGLISH_DOMAIN, ENGLISH_CONCEPTS, ENGLISH_QUESTIONS),
+    (JAVASCRIPT_DOMAIN, JAVASCRIPT_CONCEPTS, JAVASCRIPT_QUESTIONS),
+    (LAW_DOMAIN, LAW_CONCEPTS, LAW_QUESTIONS),
 ]
 
 
